@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FutureTube</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@400;700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">  
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="logo-container">
+                <img class="logo" src="{{url_for('static', filename='futuretube-high-resolution-logo.png')}}">
+            </div>
+            <div>
+                <ul class="header-items">
+                    <li>
+                        <a href="https://www.facebook.com">
+                            <img class="list-item" src="{{url_for('static', filename='facebook.png')}}">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com">
+                            <img class="list-item" src="{{url_for('static', filename='instagram.png')}}">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.twitter.com">
+                            <img class="list-item" src="{{url_for('static', filename='twitter.png')}}">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div>
+            <h1 class="main-title">Predict YouTube Video Performance</h1>
+        </div>
+        <form method="post">
+            <label for="video_id">Enter YouTube Video Link:</label><br>
+            <div class="block">
+                <input type="text" id="video_id" name="video_id">
+                <input type="submit" value="Analyze">
+            </div>
+        </form>
+        {% if prediction is not none %}
+        <div class="prediction-block">
+            <div>
+                <img class="thumbnail" src="{{ thumbnail_url }}" alt="Video Thumbnail">
+            </div>
+            <div class="predictions">
+                <h2>Predicted values:</h2>
+                <ul class="prediction-list">
+                    <li class="prediction-item">Views: {{ prediction[0]|round|int }}</li>
+                    <li class="prediction-item">Likes: {{ prediction[1]|round|int }}</li>
+                    <li class="prediction-item">Comments: {{ prediction[2]|round|int }}</li>
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
