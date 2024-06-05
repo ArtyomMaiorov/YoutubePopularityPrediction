@@ -20,7 +20,7 @@ def extract_features(video_info):
     return features
 
 
-def predict(video_id, api_key='AIzaSyBxs0sR_PK4HD3sCwkJGCE2WbzqtazCvfQ'):
+def predict(video_id, api_key='API_KEY'):
     url = f'https://www.googleapis.com/youtube/v3/videos?part=snippet&id={video_id}&key={api_key}'
     response = requests.get(url)
     video_info = response.json()['items'][0]['snippet']
